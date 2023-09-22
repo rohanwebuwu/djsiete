@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./ui/button";
+import { Button } from "./ui/button.tsx";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import Image from "next/image";

@@ -14,8 +14,12 @@ export default function RootLayout({ children }) {
     <html lang="en"  suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSyste disableTransitionOnChange>
+          <div className="">
+
           <Navbar />
+
           {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>
