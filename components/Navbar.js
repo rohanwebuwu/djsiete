@@ -3,14 +3,23 @@ import { Button } from "./ui/button";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import Image from "next/image";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Equal } from "lucide-react";
 
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 function Navbar() {
-  
   const { theme, setTheme } = useTheme();
   let logo = theme === "dark" ? "1.svg" : "2.svg";
-  
+  const [position, setPosition] = React.useState("bottom");
 
   return (
     <>
@@ -21,7 +30,7 @@ function Navbar() {
         <div className=" grid grid-cols-2 md:grid-cols-12 justify-around">
           <div className=" flex justify-around gap-3 col-span-1 md:col-span-3">
             <Link href="/">
-              <Image 
+              <Image
                 src={logo}
                 width="150"
                 height={150}
@@ -31,21 +40,41 @@ function Navbar() {
             </Link>
           </div>
           <div className=" hidden md:block  md:col-span-6 ">
-          <nav className=" grid grid-flow-col gap-2 justify-around my-7 ">
-            <ul>HOME</ul>
-            <ul>ABOUT US</ul>
-            <ul>TEAM</ul>
-            <ul>EVENTS</ul>
-          </nav>
-          
-          
+            <nav className=" grid grid-flow-col gap-2 justify-around my-7 ">
+              <ul>HOME</ul>
+              <ul>ABOUT US</ul>
+              <ul>TEAM</ul>
+              <ul>EVENTS</ul>
+            </nav>
           </div>
           <div className=" flex justify-end content-center m-5 col-span-1 md:col-span-3  ">
-            <Button
+          <Button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             >
               {theme === "dark" ? <Sun /> : <Moon />}
             </Button>
+            <div className="md:hidden">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline">
+                    <Equal />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                  <DropdownMenuSeparator />
+                  <DropdownMenuRadioGroup
+                    value={position}
+                    onValueChange={setPosition}
+                  >
+                    <DropdownMenuRadioItem>HOME</DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem>EVENTS</DropdownMenuRadioItem>
+
+                    <DropdownMenuRadioItem>TEAM</DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem>EVENTS</DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           </div>
         </div>
       </div>
