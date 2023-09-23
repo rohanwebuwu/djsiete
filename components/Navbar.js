@@ -3,7 +3,7 @@ import { Button } from "./ui/button.tsx";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import Image from "next/image";
-import { Moon, Sun, Equal } from "lucide-react";
+import { Moon, Sun, Equal,User } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -47,7 +47,11 @@ function Navbar() {
               <ul>EVENTS</ul>
             </nav>
           </div>
-          <div className=" flex justify-end content-center m-5 col-span-1 md:col-span-3  ">
+          <div className=" flex justify-end content-center m-5 col-span-1 md:col-span-3 gap-3 ">
+            
+            <Link href='/auth/signin'>
+            <Button><User /></Button>
+            </Link>
           <Button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             >
