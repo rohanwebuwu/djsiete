@@ -11,39 +11,29 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowRightToLine } from "lucide-react";
+import { ArrowRightToLine,Github} from "lucide-react";
 
-export function page() {
+function page() {
   return (
     <>
       <div className=" flex justify-center my-[100px] w-full h-full">
         <Card className="w-[350px]">
           <CardHeader>
-            <CardTitle className=" text-center">Create account</CardTitle>
+            <CardTitle className=" text-center">Log in</CardTitle>
             <CardDescription className=" text-center">
-              Sign in to IETE-SF
+              Log in to IETE-SF
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form>
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="name">Name</Label>
-                  <Input id="name" placeholder="Enter your name" />
-                  <Label htmlFor="sap" typeof="number">Sap ID</Label>
-                  <Input id="number" placeholder="Enter your SAP" />
                   <Label htmlFor="email">E-mail</Label>
                   <Input id="name" placeholder="Enter your mail" />
                   <Label htmlFor="password">Password</Label>
                   <Input
                     id="password"
                     placeholder="Enter your password"
-                    type="password"
-                  />
-                  <Label htmlFor="password">Password</Label>
-                  <Input
-                    id="password"
-                    placeholder="Re enter your password"
                     type="password"
                   />
                 </div>
@@ -58,16 +48,17 @@ export function page() {
               <ArrowRightToLine />
             </Button>
           </CardFooter>
-          <div className=" text-center">
+          <div className=" flex justify-center">
 
-          Already have an account?{" "} 
-          <Link href='/auth/login' className=" hover:text-cyan-300">
-          login here
-          </Link>
+          <Button variant="" >Log in with <span>
+             <Github/> 
+            </span>
+             </Button>
           </div>
         </Card>
       </div>
     </>
   );
 }
+
 export default page;
