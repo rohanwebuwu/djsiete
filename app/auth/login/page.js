@@ -3,13 +3,9 @@ import * as React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { app } from "../../../firebaseConfig";
-import {
-  getAuth,
-
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 import {
   Card,
@@ -27,17 +23,23 @@ function Page() {
   const signupwithgoogle = () => {
     signInWithPopup(auth, gauth)
       .then((response) => {
+        sessionStorage.setItem("Token", response.user.accessToken);
         console.log("response.user", response.user);
         router.push("/");
       })
-      .catch((err) => {
-        console.log(err);
-      });
+     
   };
   const auth = getAuth();
   const gauth = new GoogleAuthProvider();
 
   const router = useRouter();
+  useEffect(() => {
+    if (sessionStorage.getItem("Token")) {
+      router.push("/");
+    }
+   
+  }, []);
+
   return (
     <>
       <div className=" flex justify-center my-[100px] w-full h-full">
