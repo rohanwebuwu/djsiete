@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
@@ -11,14 +11,20 @@ import Navbar from "@/components/Navbar";
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en"  suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSyste disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSyste
+          disableTransitionOnChange
+        >
           <div className="">
+            
 
-          <Navbar />
+            <Navbar />
 
-          {children}
+            {children}
           </div>
         </ThemeProvider>
       </body>

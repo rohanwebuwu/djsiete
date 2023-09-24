@@ -1,6 +1,16 @@
+"use client";
 import * as React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { app } from "../../../firebaseConfig";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import {
   Card,
   CardContent,
@@ -11,9 +21,23 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowRightToLine,Github} from "lucide-react";
+import { ArrowRightToLine, Github } from "lucide-react";
 
 function page() {
+  const signupwithgoogle = () => {
+    signInWithPopup(auth, gauth)
+      .then((response) => {
+        console.log("response.user", response.user);
+        router.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const auth = getAuth();
+  const gauth = new GoogleAuthProvider();
+
+  const router = useRouter();
   return (
     <>
       <div className=" flex justify-center my-[100px] w-full h-full">
@@ -49,11 +73,9 @@ function page() {
             </Button>
           </CardFooter>
           <div className=" flex justify-center">
-
-          <Button variant="" >Log in with <span>
-             <Github/> 
-            </span>
-             </Button>
+            <Button variant="" className="m-3" onClick={signupwithgoogle}>
+              Log in with Google
+            </Button>
           </div>
         </Card>
       </div>

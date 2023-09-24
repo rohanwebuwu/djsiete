@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 import { Button } from "./ui/button.tsx";
 import { useTheme } from "next-themes";
@@ -7,9 +8,9 @@ import { Moon, Sun, Equal, User } from "lucide-react";
 
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
+
   DropdownMenuContent,
-  DropdownMenuLabel,
+
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
