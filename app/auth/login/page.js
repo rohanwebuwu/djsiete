@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { app } from "../../../firebaseConfig";
 import {
   getAuth,
-  createUserWithEmailAndPassword,
+
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
@@ -23,7 +23,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowRightToLine, Github } from "lucide-react";
 
-function page() {
+function Page() {
   const signupwithgoogle = () => {
     signInWithPopup(auth, gauth)
       .then((response) => {
@@ -83,4 +83,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

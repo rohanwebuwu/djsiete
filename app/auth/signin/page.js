@@ -18,7 +18,7 @@ import { app } from "../../../firebaseConfig";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
-export function page() {
+export function Page() {
   const auth = getAuth();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -96,4 +96,4 @@ export function page() {
     </>
   );
 }
-export default page;
+export default Page;
