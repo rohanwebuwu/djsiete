@@ -32,6 +32,8 @@ function Navbar() {
           <div className=" flex justify-around gap-3 col-span-1 md:col-span-3">
             <Link href="/">
               <Image
+              priority={true} 
+              placeholder = 'empty'
                 src={logo}
                 width="150"
                 height={150}
