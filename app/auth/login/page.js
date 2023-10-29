@@ -2,11 +2,13 @@
 import * as React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { app } from "../../../firebaseConfig";
+import { app,database } from "../../../firebaseConfig";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { OAuthProvider } from "firebase/auth";
 
+const provider = new OAuthProvider("microsoft.com");
 import {
   Card,
   CardContent,
@@ -17,19 +19,31 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowRightToLine, Github } from "lucide-react";
+import { ArrowRightToLine, Github, Mail } from "lucide-react";
+const auth = getAuth();
 
 function Page() {
   const signupwithgoogle = () => {
-    signInWithPopup(auth, gauth)
-      .then((response) => {
-        sessionStorage.setItem("Token", response.user.accessToken);
-        console.log("response.user", response.user);
-        router.push("/");
-      })
-     
+    signInWithPopup(auth, gauth).then((response) => {
+      sessionStorage.setItem("Token", response.user.accessToken);
+      console.log("response.user", response.user);
+      router.push("/");
+    });
   };
-  const auth = getAuth();
+
+  const provider = new OAuthProvider("microsoft.com");
+const signupwithoutlook=()=>{
+  signInWithPopup(auth, provider)
+    .then((response) => {
+      sessionStorage.setItem("Token", response.user.accessToken);
+      console.log("response.user", response.user);
+      
+      router.push("/");
+    })
+
+}
+  
+    
   const gauth = new GoogleAuthProvider();
 
   const router = useRouter();
@@ -37,7 +51,6 @@ function Page() {
     if (sessionStorage.getItem("Token")) {
       router.push("/");
     }
-   
   }, []);
 
   return (
@@ -77,6 +90,9 @@ function Page() {
           <div className=" flex justify-center">
             <Button variant="" className="m-3" onClick={signupwithgoogle}>
               Log in with Google
+            </Button>
+            <Button variant="" className="m-3" onClick={signupwithoutlook}>
+              <Mail />
             </Button>
           </div>
         </Card>

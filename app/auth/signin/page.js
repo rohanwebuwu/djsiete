@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowRightToLine } from "lucide-react";
 import { useState } from "react";
-import { app } from "../../../firebaseConfig";
+import { app ,database} from "../../../firebaseConfig";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
