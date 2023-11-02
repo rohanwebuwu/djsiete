@@ -2,11 +2,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-<<<<<<< HEAD
-import { app,db } from "../../../firebaseConfig";
-=======
 import { app } from "../../../firebaseConfig";
->>>>>>> parent of dc6ac48 (added outlook)
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -25,29 +21,6 @@ import { ArrowRightToLine, Github } from "lucide-react";
 
 function Page() {
   const signupwithgoogle = () => {
-<<<<<<< HEAD
-    signInWithPopup(auth, gauth).then((response) => {
-      sessionStorage.setItem("Token", response.user.accessToken);
-      console.log("response.user", response.user);
-      
-      router.push("/userDetails");
-    });
-  };
-
-  const provider = new OAuthProvider("microsoft.com");
-const signupwithoutlook=()=>{
-  signInWithPopup(auth, provider)
-    .then((response) => {
-      sessionStorage.setItem("Token", response.user.accessToken);
-      console.log("response.user", response.user);
-      
-      router.push("/userDetails");
-    })
-
-}
-  
-    
-=======
     signInWithPopup(auth, gauth)
       .then((response) => {
         sessionStorage.setItem("Token", response.user.accessToken);
@@ -57,13 +30,12 @@ const signupwithoutlook=()=>{
      
   };
   const auth = getAuth();
->>>>>>> parent of dc6ac48 (added outlook)
   const gauth = new GoogleAuthProvider();
 
   const router = useRouter();
   useEffect(() => {
     if (sessionStorage.getItem("Token")) {
-      router.push("/userDetails");
+      router.push("/  ");
     }
    
   }, []);
