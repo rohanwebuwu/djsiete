@@ -2,7 +2,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { app,database } from "../../../firebaseConfig";
+import { app,db } from "../../../firebaseConfig";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -27,7 +27,8 @@ function Page() {
     signInWithPopup(auth, gauth).then((response) => {
       sessionStorage.setItem("Token", response.user.accessToken);
       console.log("response.user", response.user);
-      router.push("/");
+      
+      router.push("/userDetails");
     });
   };
 
@@ -38,7 +39,7 @@ const signupwithoutlook=()=>{
       sessionStorage.setItem("Token", response.user.accessToken);
       console.log("response.user", response.user);
       
-      router.push("/");
+      router.push("/userDetails");
     })
 
 }
@@ -49,7 +50,7 @@ const signupwithoutlook=()=>{
   const router = useRouter();
   useEffect(() => {
     if (sessionStorage.getItem("Token")) {
-      router.push("/");
+      router.push("/userDetails");
     }
   }, []);
 
