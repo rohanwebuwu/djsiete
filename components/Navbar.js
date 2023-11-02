@@ -29,7 +29,7 @@ function Navbar() {
         suppressHydrationWarning={true}
       >
         <div className=" grid grid-cols-3 md:grid-cols-12 justify-around">
-          <span className=" flex justify-around gap-3 col-span-1 md:col-span-3">
+          <div className=" flex justify-around gap-3 col-span-1 md:col-span-3">
             <Link href="/">
               <Image
               priority={true} 
@@ -41,7 +41,7 @@ function Navbar() {
                 className=" flex justify-center my-[-30px]"
               ></Image>
             </Link>
-          </span>
+          </div>
           <div className=" hidden md:block  md:col-span-6 ">
             <nav className=" grid grid-flow-col gap-2 justify-around my-7 ">
               <ul>HOME</ul>
@@ -59,10 +59,7 @@ function Navbar() {
             <Button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             >
-              <span>
-
               {theme === "dark" ? <Sun /> : <Moon />}
-              </span>
             </Button>
             <div className="md:hidden">
               <DropdownMenu>

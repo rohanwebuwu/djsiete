@@ -2,13 +2,15 @@
 import * as React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+<<<<<<< HEAD
 import { app,db } from "../../../firebaseConfig";
+=======
+import { app } from "../../../firebaseConfig";
+>>>>>>> parent of dc6ac48 (added outlook)
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { OAuthProvider } from "firebase/auth";
 
-const provider = new OAuthProvider("microsoft.com");
 import {
   Card,
   CardContent,
@@ -19,11 +21,11 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowRightToLine, Github, Mail } from "lucide-react";
-const auth = getAuth();
+import { ArrowRightToLine, Github } from "lucide-react";
 
 function Page() {
   const signupwithgoogle = () => {
+<<<<<<< HEAD
     signInWithPopup(auth, gauth).then((response) => {
       sessionStorage.setItem("Token", response.user.accessToken);
       console.log("response.user", response.user);
@@ -45,6 +47,17 @@ const signupwithoutlook=()=>{
 }
   
     
+=======
+    signInWithPopup(auth, gauth)
+      .then((response) => {
+        sessionStorage.setItem("Token", response.user.accessToken);
+        console.log("response.user", response.user);
+        router.push("/");
+      })
+     
+  };
+  const auth = getAuth();
+>>>>>>> parent of dc6ac48 (added outlook)
   const gauth = new GoogleAuthProvider();
 
   const router = useRouter();
@@ -52,6 +65,7 @@ const signupwithoutlook=()=>{
     if (sessionStorage.getItem("Token")) {
       router.push("/userDetails");
     }
+   
   }, []);
 
   return (
@@ -91,9 +105,6 @@ const signupwithoutlook=()=>{
           <div className=" flex justify-center">
             <Button variant="" className="m-3" onClick={signupwithgoogle}>
               Log in with Google
-            </Button>
-            <Button variant="" className="m-3" onClick={signupwithoutlook}>
-              <Mail />
             </Button>
           </div>
         </Card>
