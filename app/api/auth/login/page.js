@@ -2,7 +2,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { app } from "../../../firebaseConfig";
+import { app } from "../../../../firebaseConfig";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -25,7 +25,7 @@ function Page() {
       .then((response) => {
         sessionStorage.setItem("Token", response.user.accessToken);
         console.log("response.user", response.user);
-        router.push("/");
+        router.push("/dashboard");
       })
      
   };

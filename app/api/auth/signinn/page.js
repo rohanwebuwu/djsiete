@@ -14,9 +14,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowRightToLine } from "lucide-react";
 import { useState } from "react";
-import { app } from "../../../firebaseConfig";
+import { app } from "../../../../firebaseConfig";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
+import Loginwithgoogle from "@/components/Loginwithgoogle";
 
 export function Page() {
   const auth = getAuth();
@@ -81,9 +82,10 @@ export function Page() {
             <Button variant="outline">
               <Link href="/">Cancel</Link>
             </Button>
-            <Button onClick={signup}>
+            {/* <Button onClick={signup}>
               <ArrowRightToLine />
-            </Button>
+            </Button> */}
+<Loginwithgoogle/>
           </CardFooter>
           <div className=" text-center">
             Already have an account?{" "}

@@ -1,24 +1,29 @@
-'use client';
+"use client";
 import React from "react";
 import { Button } from "./ui/button.tsx";
 import { useTheme } from "next-themes";
 import Link from "next/link";
-import Image from "next/image";
+
+import { signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { Moon, Sun, Equal, User } from "lucide-react";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 import {
   DropdownMenu,
-
   DropdownMenuContent,
-
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import ModeToggle from "./Toggle.js";
 
 function Navbar() {
+  let router = useRouter();
   const { theme, setTheme } = useTheme();
+  const { status, data: session } = useSession();
   let logo = theme === "dark" ? "1.svg" : "2.svg";
   const [position, setPosition] = React.useState("bottom");
 
@@ -32,8 +37,8 @@ function Navbar() {
           <div className=" flex justify-around gap-3 col-span-1 md:col-span-3">
             <Link href="/">
               <Image
-              priority={true} 
-              placeholder = 'empty'
+                priority={true}
+                placeholder="empty"
                 src={logo}
                 width="150"
                 height={150}
@@ -44,23 +49,29 @@ function Navbar() {
           </div>
           <div className=" hidden md:block  md:col-span-6 ">
             <nav className=" grid grid-flow-col gap-2 justify-around my-7 ">
-              <ul>HOME</ul>
+              <Link href="/">
+                <ul>HOME</ul>
+              </Link>
               <ul>ABOUT US</ul>
               <ul>TEAM</ul>
               <ul>EVENTS</ul>
             </nav>
           </div>
           <div className=" flex justify-end content-center m-5 col-span-2 md:col-span-3 gap-3 ">
-            <Link href="/auth/signin">
-              <Button>
+            {status === "authenticated" ? (
+              <Button onClick={() => signOut("google")}>
+                {router.push("/")}
+                sign out
+              </Button>
+            ) : (
+              <Button onClick={() => signIn("google")}>
+                {router.push("/dashboard")}
                 <User />
               </Button>
-            </Link>
-            <Button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            >
-              {theme === "dark" ? <Sun /> : <Moon />}
-            </Button>
+            )}
+
+            <ModeToggle />
+
             <div className="md:hidden">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
