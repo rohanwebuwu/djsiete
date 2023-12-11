@@ -5,9 +5,9 @@ import { addDoc, collection,getDocs } from "firebase/firestore";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
+
 function page() {
-  const { toast } = useToast();
+
   const [mail, setmail] = useState("");
   const [name, setname] = useState("");
   const adddata = () => {
