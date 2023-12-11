@@ -6,7 +6,7 @@ function Hero() {
   return (
   
   
-  <><div className=" bg-gradient-to-tl from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent  h-[100vh]  text-7xl flex justify-center items-center text-center">Welcome to our project <br />
+  <><div className=" bg-gradient-to-tl from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent  h-[100vh]  text-7xl flex justify-center items-center text-center font-bold">Welcome to our project <br />
       Student Management System
     </div>
     

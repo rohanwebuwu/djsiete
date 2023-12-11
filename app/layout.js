@@ -10,6 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 import Navbar from "@/components/Navbar";
 import Providers from "@/components/Providers";
 
+
 export default function RootLayout({ children }) {
 
 

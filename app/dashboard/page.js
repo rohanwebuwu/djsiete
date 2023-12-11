@@ -53,20 +53,14 @@ function page() {
             <p className=" flex justify-center text-3xl ">
               Welcome {session.user.name}
             </p>
-            <div className=" my-[10vh] text-8xl">send data</div>
-      <div className="m-3 ">
-        Do you have IETE SF membership?:
-        <Input
-          placeholder="yes or no"
-          onChange={(event) => setismember(event.target.value)}
-        />
-      
-        <Button onClick={adddata}>submit</Button>
-      </div>
+
+     
             <Statusdata />
           </div>
         ) : (
-          router.push("/")
+<div>
+  not authenticated
+</div>
         )}
       </div>
     </>

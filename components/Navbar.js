@@ -3,10 +3,10 @@ import React from "react";
 import { Button } from "./ui/button.tsx";
 import { useTheme } from "next-themes";
 import Link from "next/link";
-
+import { useEffect } from "react";
 import { signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Moon, Sun, Equal, User } from "lucide-react";
+import { Equal, User } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
@@ -26,6 +26,15 @@ function Navbar() {
   const { status, data: session } = useSession();
   let logo = theme === "dark" ? "1.svg" : "2.svg";
   const [position, setPosition] = React.useState("bottom");
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/dashboard");
+    }
+    else{
+      router.push("/")
+    }
+   
+  }, []);
 
   return (
     <>
@@ -59,13 +68,15 @@ function Navbar() {
           </div>
           <div className=" flex justify-end content-center m-5 col-span-2 md:col-span-3 gap-3 ">
             {status === "authenticated" ? (
+              
               <Button onClick={() => signOut("google")}>
-                {router.push("/")}
+         
                 sign out
               </Button>
+              
             ) : (
-              <Button onClick={() => signIn("google")}>
-                {router.push("/dashboard")}
+              <Button onClick={()=>signIn("google")} >
+                  
                 <User />
               </Button>
             )}
