@@ -17,6 +17,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Statusdata from "@/components/Statusdata";
+import ProfileForm, { CardWithForm } from "@/components/Sendinfo";
+import Sendinfo from "@/components/Sendinfo";
 
 function page() {
   const [ismember, setismember] = useState("");
@@ -53,14 +55,12 @@ function page() {
             <p className=" flex justify-center text-3xl ">
               Welcome {session.user.name}
             </p>
+          
 
-     
             <Statusdata />
           </div>
         ) : (
-<div>
-  not authenticated
-</div>
+          <div>not authenticated</div>
         )}
       </div>
     </>

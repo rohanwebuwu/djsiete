@@ -45,7 +45,7 @@ function Navbar() {
         <div className=" grid grid-cols-3 md:grid-cols-12 justify-around">
           <div className=" flex justify-around gap-3 col-span-1 md:col-span-3">
             <Link href="/">
-              <Image
+              {/* <Image
                 priority={true}
                 placeholder="empty"
                 src={logo}
@@ -53,7 +53,7 @@ function Navbar() {
                 height={150}
                 alt="logo"
                 className=" flex justify-center my-[-30px]"
-              ></Image>
+              ></Image> */}
             </Link>
           </div>
           <div className=" hidden md:block  md:col-span-6 ">
