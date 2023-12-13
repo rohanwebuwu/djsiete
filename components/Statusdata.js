@@ -30,7 +30,7 @@ const Statusdata = () => {
   }, []);
 
   const dataa = membershipdata.map((doc) => doc.data());
-  console.log("dataa", dataa);
+
 
   const { data: session } = useSession();
 
@@ -43,7 +43,7 @@ const Statusdata = () => {
         {session.user.name} <br />
       </div>
       <div>
-        <div className=" grid gap-4 grid-cols-4 ">
+        <div className=" grid gap-4 md:grid-cols-4 m-4 ">
           {dataa.map((item) => (
             <Card key={item.Sapid} className="">
               <CardHeader>
