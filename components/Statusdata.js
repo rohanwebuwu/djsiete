@@ -1,6 +1,7 @@
 "use client";
 import { db } from "@/firebaseConfig";
 import React, { use } from "react";
+import { Button } from "./ui/button";
 import {
   CardContent,
   CardDescription,
@@ -31,14 +32,19 @@ const Statusdata = () => {
 
   const dataa = membershipdata.map((doc) => doc.data());
 
-
   const { data: session } = useSession();
 
   return (
     <>
       <div>
         new here?
-        <Link href="/senddata">send data</Link>
+        <Link href="/senddata">
+          
+          <Button variant="ghost">
+
+          send data
+          </Button>
+          </Link>
         <br />
         {session.user.name} <br />
       </div>
@@ -60,8 +66,8 @@ const Statusdata = () => {
                 <p>Sap Id:{item.Sapid}</p>
               </CardContent>
               <CardFooter>
-    <p>{item.email}</p>
-  </CardFooter>
+                <p>{item.email}</p>
+              </CardFooter>
             </Card>
           ))}
         </div>

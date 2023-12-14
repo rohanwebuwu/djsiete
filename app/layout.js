@@ -1,5 +1,5 @@
 "use client";
-
+import { Toaster } from "@/components/ui/toaster"
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 
@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
             <Providers>
             <Navbar />
             <div className="my-[10vh]"></div>
-
+            <Toaster />
             {children}
             </Providers>
           </div>

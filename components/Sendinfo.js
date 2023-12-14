@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import * as React from "react";
 import { db } from "@/firebaseConfig";
 import { addDoc, collection, getDocs } from "firebase/firestore";
@@ -16,16 +16,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+import { useToast } from "@/components/ui/use-toast";
 export function CardWithForm() {
-  const router=useRouter();
+  const { toast } = useToast();
+  const router = useRouter();
   const { data: session } = useSession();
   const [membership, setmembership] = useState("");
   const [sapid, setsapid] = useState(60002210091);
   const [namee, setname] = useState(session?.user?.name);
   const [mail, setmail] = useState(session?.user?.email);
 
-
-  async function adddata(sapid,membership) {
+  async function adddata(sapid, membership) {
     try {
       const docRef = await addDoc(collection(db, "membership"), {
         name: namee,
@@ -35,6 +36,10 @@ export function CardWithForm() {
       });
       router.push("/dashboard");
 
+      toast({
+        title: session?.user?.name + " has been registered",
+      });
+
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -43,6 +48,10 @@ export function CardWithForm() {
 
   return (
     <>
+    <div className=" w-full h-full flex justify-center items-center my-10">
+
+
+
       <Card className="w-[350px] ">
         <CardHeader>
           <CardTitle>Give your details</CardTitle>
@@ -72,6 +81,7 @@ export function CardWithForm() {
           <Button onClick={() => adddata(sapid, membership)}>SUBMIT</Button>
         </CardFooter>
       </Card>
+      </div>
     </>
   );
 }
