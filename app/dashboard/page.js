@@ -6,20 +6,7 @@ import { db } from "@/firebaseConfig";
 import { useState } from "react";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import Image from "next/image";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import Statusdata from "@/components/Statusdata";
-import ProfileForm, { CardWithForm } from "@/components/Sendinfo";
-import Sendinfo from "@/components/Sendinfo";
-
 function page() {
   const [ismember, setismember] = useState("");
   const { status } = useSession();
@@ -55,7 +42,6 @@ function page() {
             <p className=" flex justify-center text-3xl ">
               Welcome {session.user.name}
             </p>
-          
 
             <Statusdata />
           </div>

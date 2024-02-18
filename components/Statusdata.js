@@ -1,9 +1,9 @@
 "use client";
 import { db } from "@/firebaseConfig";
-import { doc, getDoc, deleteDoc } from "firebase/firestore";
-
+import { doc, deleteDoc } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
-import { useToast } from "./ui/use-toast";
+import { useToast } from "@/components/ui/use-toast"
 import {
   CardContent,
   CardDescription,
@@ -22,31 +22,36 @@ import {
   where,
 } from "firebase/firestore";
 import { useSession } from "next-auth/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import Link from "next/link";
 import { Card } from "./ui/card";
+import Updatefield from "./Updatefield";
 
 const Statusdata = () => {
+  const touter = useRouter();
+  const { toast } = useToast()
+
   const { data: session } = useSession();
   const [membershipdata, setmembershipdata] = useState([]);
 
-
-
-
   useEffect(() => {
     onSnapshot(query(collection(db, "membership")), (snapshot) => {
-      setmembershipdata(snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})))
+      setmembershipdata(
+        snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+      );
     });
-
   }, []);
 
   async function deleteData(id) {
     deleteDoc(doc(db, "membership", id));
     console.log("deleted");
+    toast({
+      title: "Data Deleted",
+
+    })
+
+
   }
-
-
-
 
   return (
     <>
@@ -68,7 +73,6 @@ const Statusdata = () => {
               </CardHeader>
               <CardContent>
                 <p>Sap Id:{item.Sapid}</p>
-
               </CardContent>
               <CardContent>
                 <p>Is Member:{item.membership}</p>
@@ -88,7 +92,14 @@ const Statusdata = () => {
                 >
                   Delete
                 </Button>
-                <Button variant="secondary">Edit</Button>
+                <Link
+                  href={{
+                    pathname: "/updatedata",
+                    query: {id:item.id}, // the data
+                  }}
+                >
+                  <Button variant="secondary">Edit</Button>
+                </Link>
               </div>
             </Card>
           ))}
