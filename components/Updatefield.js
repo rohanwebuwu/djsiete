@@ -3,20 +3,31 @@ import { Input } from "@/components/ui/input";
 import { Button } from "./ui/button";
 import { doc, setDoc,updateDoc } from "firebase/firestore"; 
 import { db } from "@/firebaseConfig";
-
+import { useRouter } from "next/navigation";
 
 import { useState } from "react";
 function Updatefield(props) {
-  const [sap, setsap] = useState("")
-  const [mem, setmem] = useState("")
+  const router = useRouter()
+  const [sap, setsap] = useState()
+  const [mem, setmem] = useState()
 
   async function updateData() {
-    await updateDoc(doc(db, "membership", props.id), {
-      Sapid: sap,
-      membership: mem,
+    try {
+      await updateDoc(doc(db, "membership", props.id), {
+        Sapid: sap,
+        membership: mem,
+  
+  
+      });
+      router.push("/dashboard")
+      
+    } catch (error) {
+      console.error("Error updating document: ", error);
+      router.push("/dashboard")
 
-
-    });
+      
+    }
+    
 
 
   }
