@@ -61,7 +61,10 @@ function Navbar() {
               <Link href="/">
                 <ul>HOME</ul>
               </Link>
-              <ul>ABOUT US</ul>
+              <Link href="request">
+              
+              <ul>Show Team Requests</ul>
+              </Link>
               <ul>TEAM</ul>
               <ul>EVENTS</ul>
             </nav>
