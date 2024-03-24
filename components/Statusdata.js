@@ -27,7 +27,7 @@ import Link from "next/link";
 import { Card } from "./ui/card";
 import Updatefield from "./Updatefield";
 import Sendreq from "./Sendreq";
-import { get } from "react-hook-form";
+
 
 const Statusdata = () => {
   const touter = useRouter();
@@ -35,6 +35,7 @@ const Statusdata = () => {
   const { toast } = useToast();
 
   const { data: session } = useSession();
+  
   const [membershipdata, setmembershipdata] = useState([]);
 
   useEffect(() => {
@@ -45,6 +46,8 @@ const Statusdata = () => {
     });
   }, []);
   const [docId, setDocId] = useState(null);
+
+  
   const getDocumentId = async () => {
     const q = query(collection(db, "membership"), where("email", "==", session.user.email));
 

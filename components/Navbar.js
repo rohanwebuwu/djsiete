@@ -29,11 +29,9 @@ function Navbar() {
   useEffect(() => {
     if (status === "authenticated") {
       router.push("/dashboard");
+    } else {
+      router.push("/");
     }
-    else{
-      router.push("/")
-    }
-   
   }, []);
 
   return (
@@ -62,8 +60,7 @@ function Navbar() {
                 <ul>HOME</ul>
               </Link>
               <Link href="request">
-              
-              <ul>Show Team Requests</ul>
+                <ul>Show Team Requests</ul>
               </Link>
               <ul>TEAM</ul>
               <ul>EVENTS</ul>
@@ -71,15 +68,9 @@ function Navbar() {
           </div>
           <div className=" flex justify-end content-center m-5 col-span-2 md:col-span-3 gap-3 ">
             {status === "authenticated" ? (
-              
-              <Button onClick={() => signOut("google")}>
-         
-                sign out
-              </Button>
-              
+              <Button onClick={() => signOut("google")}>sign out</Button>
             ) : (
-              <Button onClick={()=>signIn("google")} >
-                  
+              <Button onClick={() => signIn("google")}>
                 <User />
               </Button>
             )}
@@ -99,8 +90,13 @@ function Navbar() {
                     value={position}
                     onValueChange={setPosition}
                   >
-                    <DropdownMenuRadioItem>HOME</DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem>EVENTS</DropdownMenuRadioItem>
+                    <Link href="/">
+                      <DropdownMenuRadioItem>HOME</DropdownMenuRadioItem>
+                    </Link>
+
+                    <DropdownMenuRadioItem>
+                      <Link href="request">SHOW TEAM REQUESTS</Link>
+                    </DropdownMenuRadioItem>
 
                     <DropdownMenuRadioItem>TEAM</DropdownMenuRadioItem>
                     <DropdownMenuRadioItem>EVENTS</DropdownMenuRadioItem>
